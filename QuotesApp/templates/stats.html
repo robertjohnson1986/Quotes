@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Stats</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+<body>
+    <h1>Hello {{user.first_name}}. These are your stats!</h1>
+    <a href="/logout"><button>Logout</button></a>
+    <a href="/success">Go Back</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Total Granted Wishes by All Users/</th>
+                <th>{{user.first_name}}'s Pending Wishes/</th>
+                <th>{{user.first_name}}'s Granted Wishes</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            
+            <tr>
+                <td>
+                    
+                    <p>{{how_many}}</p>
+                
+                </td>
+                
+                <td>
+                    <p>{{how_many3}}</p> 
+                </td>
+
+                <td>
+                    <p>{{how_many2}}</p> 
+                </td>
+            </tr>    
+            
+            
+        </tbody>
+    </table>
+</body>
+</html>

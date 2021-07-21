@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+<body>
+    {% if messages %}
+<ul class="messages">    
+    {% for message in messages %}    
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+    {% endfor %}
+</ul>
+{% endif %}
+    <h1>Edit</h1>
+    <form action="/update/{{user_account.id}}" method="post">
+                    {% csrf_token %}
+            <div class="form-group">
+                <label for="first_name">First Name</label>
+                <input name="first_name" type="text" value="{{user_account.first_name}}">
+            </div>
+            <div class="form-group">
+                <label for="last_name">Last Name</label>
+                <input name="last_name" type="text" value="{{user_account.last_name}}">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input name="email" type="text" value="{{user_account.email}}">
+            </div>
+            
+            <div class="form_group">
+                <button class="btn btn-primary" type="submit">Update</button>
+            </div>
+        </form>
+    <a href="/success">Go Back!</a>
+    <a href="/logout">Logout!</a>
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add a Favorite Book</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
+
+</head>
+{% if messages %}
+<ul class="messages">    
+    {% for message in messages %}    
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+    {% endfor %}
+</ul>
+{% endif %}
+
+<body>
+    <div class="wrapper">
+        <h1>Welcome {{user.first_name}} {{user.last_name}}</h1>
+        {% if request.session.user_id %}
+        <p class='green'>Successfully registered (or logged in)</p>
+        {% endif %}
+        <a href="/logout"><button>Logout</button></a>
+    </div>
+  
+<div>
+ 
+    
+    <a href="/edit/{{user.id}}" role="button" class="btn btn-danger">Edit Profile</a>
+    
+    
+        
+        
+    
+   
+</div>
+<div>
+<h1>Add a Quote!</h1>
+
+<form action="/post_title" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="title">Author of Quote:</label>
+        <input type="text" class="form-control" name="description">
+        <label for="title">Quote:</label>
+        <input type="text" class="form-control" name="message">
+        
+    
+    
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+    
+    <h1>Quotes</h1>
+    
+    
+    {% if messages %}
+<ul class="messages">    
+    {% for message in messages %}    
+        <li class='green' {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+    {% endfor %}
+</ul>
+{% endif %}
+    {% for wish in wall_messages reversed %}
+        
+        <div class='one_post'>
+            
+                <h3>{{wish.message}}</h3>
+                <h4>By: {{wish.description}}</h4>
+                <p>Posted By:</p><a href="/quote_page/{{wish.poster.id}}">{{wish.poster.first_name}} {{wish.poster.last_name}}</a>
+                <p>{{wish.updated_at}}</p>
+                
+                <a href="/like_message1/{{wish.id}}">Like</a>
+                
+             
+                
+                <p>{{wish.users_who_like.count}}</p>
+                {% if current_user.id == wish.user_who_grants.id %}
+                <a href="/delete_message/{{wish.id}}">Delete</a>
+                
+                {% endif %}
+                
+
+                
+                
+                
+            
+        
+        </div>
+        
+        {% endfor %}
+        
+</body>
+
+</html>
+
